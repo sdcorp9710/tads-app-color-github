@@ -1,0 +1,144 @@
+/* Tipografía y variables */
+:root{
+  --accent: #5b8cff; /* se actualiza dinámicamente según el color elegido */
+  --bg-grad-1: #0f1221;
+  --bg-grad-2: #141a33;
+  --glass: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.18);
+  --preview-height: 280px;
+}
+
+*{ box-sizing: border-box; }
+html, body{
+  height: 100%;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: radial-gradient(1200px 800px at 20% 10%, #263159 0%, transparent 55%),
+              radial-gradient(1000px 900px at 80% 20%, #3a4f88 0%, transparent 60%),
+              linear-gradient(160deg, var(--bg-grad-1), var(--bg-grad-2));
+  color: #e9ecf1;
+}
+
+/* Hero */
+.hero .grad-text{
+  background: linear-gradient(90deg, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Cards con glassmorphism */
+.card.glass{
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+.glass-header{
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+}
+
+/* Badges de valores */
+.value-badge{
+  display:inline-block;
+  min-width: 2.5rem;
+  text-align:center;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: .65rem;
+  padding: .2rem .5rem;
+  color: #f1f5f9;
+}
+.badge-r{ box-shadow: inset 0 0 0 1px rgba(255,0,0,.4); }
+.badge-g{ box-shadow: inset 0 0 0 1px rgba(0,255,0,.35); }
+.badge-b{ box-shadow: inset 0 0 0 1px rgba(0,140,255,.35); }
+
+/* Inputs */
+.form-label{ color:#e7ebf3; }
+.form-text{ color:#c8d0e0; }
+.input-group-text{
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.18);
+  color:#e9ecf1;
+}
+.form-control, .form-control-color{
+  background: rgba(0,0,0,0.25);
+  border-color: rgba(255,255,255,0.18);
+  color: #e9ecf1;
+}
+.form-control:focus, .form-control-color:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .2rem rgba(91,140,255,.2);
+}
+.color-picker{
+  width: 3rem;
+  height: 2.25rem;
+  padding: .25rem;
+  border-radius: .75rem;
+}
+
+/* Sliders: pulgares con acento */
+.form-range::-webkit-slider-thumb{
+  background: var(--accent);
+}
+.form-range::-moz-range-thumb{
+  background: var(--accent);
+}
+.thumb-r::-webkit-slider-thumb{ box-shadow: 0 0 0 4px rgba(255,0,0,.15); }
+.thumb-g::-webkit-slider-thumb{ box-shadow: 0 0 0 4px rgba(0,255,0,.12); }
+.thumb-b::-webkit-slider-thumb{ box-shadow: 0 0 0 4px rgba(0,140,255,.12); }
+
+/* Botones con acento */
+.btn-accent-subtle{
+  background: rgba(91,140,255,.12);
+  color: #e9ecf1;
+  border: 1px solid rgba(91,140,255,.35);
+}
+.btn-accent-subtle:hover{
+  background: rgba(91,140,255,.2);
+}
+.btn-outline-accent{
+  border:1px solid var(--accent);
+  color:#e9ecf1;
+}
+.btn-outline-accent:hover{
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* HEX chip en la vista previa */
+.hex-chip{
+  background: rgba(0,0,0,.4);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: .75rem;
+  padding: .25rem .6rem;
+}
+
+/* Preview con checker de fondo y animación */
+.preview-wrap{
+  position: relative;
+  height: var(--preview-height);
+  overflow: hidden;
+}
+.checker{
+  position:absolute; inset:0;
+  background: conic-gradient(#fff 25%, #c9d1e6 0 50%, #fff 0 75%, #c9d1e6 0) 0 0/32px 32px;
+  opacity: .25;
+}
+.preview{
+  position:absolute; inset:0;
+  background: #000000;
+  border: 1px solid rgba(255,255,255,.18);
+  transition: background 240ms ease, box-shadow 240ms ease;
+  box-shadow: inset 0 0 40px rgba(0,0,0,.2);
+}
+.preview-overlay{
+  position:absolute; inset:0;
+  display:flex; justify-content:center; align-items:end;
+  padding: .85rem;
+}
+
+/* Footer */
+footer{ background: transparent; }

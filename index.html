@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visor RGB · Bonito & Moderno</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons (solo para iconitos) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- Hero -->
+    <header class="hero py-5">
+      <div class="container text-center">
+        <h1 class="display-6 fw-bold mb-2"><span class="grad-text">Visor RGB</span> con Bootstrap</h1>
+        <p class="lead mb-0">Ajusta <strong>Rojo</strong>, <strong>Verde</strong> y <strong>Azul</strong>, pega un <strong>HEX</strong> o usa el <strong>selector</strong>.</p>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="container pb-5">
+      <div class="row g-4 align-items-stretch">
+        <!-- Controles -->
+        <div class="col-12 col-lg-6">
+          <div class="card glass shadow-lg h-100">
+            <div class="card-header glass-header d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-sliders"></i>
+                <span class="fw-semibold">Controles de color</span>
+              </div>
+              <span class="badge rounded-pill text-bg-dark-subtle">Bootstrap 5</span>
+            </div>
+
+            <div class="card-body">
+              <form id="rgb-form" class="vstack gap-4" onsubmit="return false;">
+                <!-- Color Picker -->
+                <div>
+                  <label for="color-picker" class="form-label mb-1">Selector de color</label>
+                  <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <input type="color" id="color-picker" class="form-control form-control-color color-picker" value="#000000" title="Elige un color">
+                    <div class="d-flex gap-2">
+                      <button id="random-btn" type="button" class="btn btn-outline-accent btn-sm">
+                        <i class="bi bi-shuffle"></i> Aleatorio
+                      </button>
+                      <button id="reset-btn" type="button" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-arrow-counterclockwise"></i> Reiniciar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Campo HEX -->
+                <div>
+                  <label for="hex-input" class="form-label mb-1">Color HEX</label>
+                  <div class="input-group hex-group">
+                    <span class="input-group-text">#</span>
+                    <input
+                      type="text"
+                      id="hex-input"
+                      class="form-control hex-input"
+                      placeholder="RRGGBB"
+                      autocomplete="off"
+                      spellcheck="false"
+                      aria-describedby="hex-help"
+                    >
+                    <button id="copy-btn" class="btn btn-accent-subtle" type="button" title="Copiar HEX">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                  <div id="hex-help" class="form-text">
+                    Formato: <code>RRGGBB</code> (ej. <code>1A2B3C</code>). El signo <code>#</code> es opcional.
+                    <span id="copy-feedback" class="ms-2 text-success d-none">¡Copiado!</span>
+                  </div>
+                  <div class="invalid-feedback">
+                    Ingresa un HEX válido (6 dígitos hexadecimales).
+                  </div>
+                </div>
+
+                <!-- ROJO -->
+                <div class="range-row">
+                  <label for="r" class="form-label d-flex justify-content-between align-items-center mb-1">
+                    <span>Rojo (R)</span>
+                    <span class="value-badge badge-r" id="r-badge">0</span>
+                  </label>
+                  <div class="row g-2 align-items-center">
+                    <div class="col">
+                      <input type="range" class="form-range thumb-r" min="0" max="255" value="0" id="r" aria-label="Rojo slider">
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" min="0" max="255" step="1" value="0" id="r-num" class="form-control form-control-sm num-input" aria-label="Rojo número">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- VERDE -->
+                <div class="range-row">
+                  <label for="g" class="form-label d-flex justify-content-between align-items-center mb-1">
+                    <span>Verde (G)</span>
+                    <span class="value-badge badge-g" id="g-badge">0</span>
+                  </label>
+                  <div class="row g-2 align-items-center">
+                    <div class="col">
+                      <input type="range" class="form-range thumb-g" min="0" max="255" value="0" id="g" aria-label="Verde slider">
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" min="0" max="255" step="1" value="0" id="g-num" class="form-control form-control-sm num-input" aria-label="Verde número">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AZUL -->
+                <div class="range-row">
+                  <label for="b" class="form-label d-flex justify-content-between align-items-center mb-1">
+                    <span>Azul (B)</span>
+                    <span class="value-badge badge-b" id="b-badge">0</span>
+                  </label>
+                  <div class="row g-2 align-items-center">
+                    <div class="col">
+                      <input type="range" class="form-range thumb-b" min="0" max="255" value="0" id="b" aria-label="Azul slider">
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" min="0" max="255" step="1" value="0" id="b-num" class="form-control form-control-sm num-input" aria-label="Azul número">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vista previa -->
+        <div class="col-12 col-lg-6">
+          <div class="card glass shadow-lg h-100">
+            <div class="card-header glass-header d-flex align-items-center gap-2">
+              <i class="bi bi-palette"></i>
+              <span class="fw-semibold">Vista previa</span>
+            </div>
+            <div class="card-body">
+              <div class="preview-wrap rounded-4">
+                <div class="checker"></div>
+                <div id="preview" class="preview rounded-4 border"></div>
+                <div class="preview-overlay">
+                  <code id="hex-code" class="hex-chip">#000000</code>
+                </div>
+              </div>
+              <div id="contrastInfo" class="form-text mt-3">
+                Contraste sobre texto blanco/negro calculado automáticamente.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="py-4 text-center small text-white-50">
+      Hecho con <i class="bi bi-heart-fill"></i> para mi grupo de Taller Avanzado de Desarrollo de Sistemas :)
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
